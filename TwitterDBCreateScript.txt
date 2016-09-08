@@ -1,0 +1,25 @@
+CREATE TABLE User(  
+  PK_User    INTEGER NOT NULL PRIMARY KEY,  
+  Name  TEXT,
+  Profile TEXT 
+);  
+CREATE TABLE Tweet(
+  PK_Tweet    INTEGER NOT NULL PRIMARY KEY,    
+  Author  TEXT,   
+  Date   TEXT,  
+  Reply TEXT,  
+  FOREIGN KEY(Author) REFERENCES User(PK_User)  
+);
+Create Table Following(
+Follower TEXT,
+Following TEXT,
+FOREIGN KEY(Follower) REFERENCES User(PK_User),
+FOREIGN KEY(Following) REFERENCES User(PK_User)
+);
+Create Table Like(
+User TEXT,
+Tweet TEXT,
+FOREIGN KEY(User) REFERENCES User(PK_User),
+FOREIGN KEY(Tweet) REFERENCES Tweet(PK_Tweet)
+);
+
