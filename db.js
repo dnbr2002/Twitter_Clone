@@ -2,7 +2,7 @@ var express = require('express');
 var app = express();
 var sqlite3 = require('sqlite3').verbose();
 var db = new sqlite3.Database('TwitterDb.db');
-var TweetTable = 'Users'
+var TweetTable = 'Tweet'
 var UserTable = 'User'
 
 CreateTweetTable(db);
