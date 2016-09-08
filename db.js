@@ -1,51 +1,42 @@
 var express = require('express');
 var app = express();
 var sqlite3 = require('sqlite3').verbose();
-var db = new sqlite3.Database('TwitterDb');
+var db = new sqlite3.Database('TwitterDb.db');
+var TweetTable = 'Users'
+var UserTable = 'User'
 
-/*app.get('/', function (req, res) {
-    res.send('Hello World!');
-});
+CreateTweetTable(db);
+function CreateTweetTable(db) {
+    try {
+        db.serialize(function () {
 
-app.get('/foo', function (req, res) {
-    res.send('yo');
-});
-
-app.listen(3000, function () {
-    console.log('Example app listening on port 3000!');
-});*/
-
-try
-{
-var date = new Date();
-var current_hour = date.getHours();
-
-initDB(db);
-
-function initDB(db) {
-    db.serialize(function() {
-        db.run("CREATE TABLE Tweet (Date TEXT, Text Text, Author Text, Replies Text, Likes Text)");
-
-        var stmt = db.prepare("INSERT INTO TwitterDb VALUES (?)");
-        for (var i = 0; i < 10; i++) {
-            stmt.run(current_hour,'blah ' + i, 'Steve the ' + i,'',i);
-        }
-        stmt.finalize();
-
-        db.each("SELECT rowid AS id, info FROM TwitterDb", function (err, row) {
-            if (err) {
-                console.log(err);
-            }
-            console.log(row.id + ": " + row.info);
-        });
+            db.run("CREATE TABLE IF NOT EXISTS " + TweetTable + " (PK_Tweet Integer NOT NULL PRIMARY KEY,Date TEXT, Text Text, Author Text, Replies Text, Likes Text)");
+                
+                console.log("Tweet table created");
     });
-}
 
-db.close();
 
-}
+    }
 
-catch (err)
-{
-    console.log(err);
+    catch (err) {
+        console.log(err);
+    }
+   CreateUserTable(db);
+    function CreateUserTable(db) {
+    try {
+        db.serialize(function () {
+
+            db.run("CREATE TABLE IF NOT EXISTS " + UserTable + " (Pk_User Integer NOT NULL PRIMARY KEY, Profile Text, Name Text, History Text, Followers Text, Following Text)");
+
+                
+                console.log("User table created");
+    });
+
+        db.close();
+    }
+    
+    catch (err) {
+        console.log(err);
+    }
+    }
 }
