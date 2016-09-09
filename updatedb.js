@@ -1,7 +1,7 @@
 var express = require('express');
 var app = express();
 var sqlite3 = require('sqlite3').verbose();
-var db = new sqlite3.Database('TwitterDb.db');
+var db = new sqlite3.Database('TwitterCloneDb.sqlite');
 var Name = ['Steve', 'John', 'Kim', 'Sara','Rusty','Scott','Molly','Bryce','Carolyn','Steve'];
 var Profile = ['I live in MD', 'I live in DC', 'I love Purple','I live in Florida','I like to surf','I like to play Tennis','','','Must love dogs','']
 var Tweet = ['cats', 'dogs', 'Kanye', 'cats that like Kanye','Oprah','Horses','Cars','programmming','bikes','skyscrapers'];

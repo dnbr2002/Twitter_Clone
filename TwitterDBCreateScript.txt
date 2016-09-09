@@ -5,14 +5,15 @@ CREATE TABLE User(
 );  
 CREATE TABLE Tweet(
   PK_Tweet    INTEGER NOT NULL PRIMARY KEY,    
-  Author  TEXT,   
+  Author  TEXT,
+  Text TEXT,   
   Date   TEXT,  
   Reply TEXT,  
   FOREIGN KEY(Author) REFERENCES User(PK_User)  
 );
 Create Table Following(
 Follower TEXT,
-Following TEXT,
+Followee TEXT,
 FOREIGN KEY(Follower) REFERENCES User(PK_User),
 FOREIGN KEY(Following) REFERENCES User(PK_User)
 );
