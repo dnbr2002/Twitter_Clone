@@ -10,14 +10,16 @@ var FollowingName = 'Rusty';
 FollowUser(db,FollowName,FollowingName);
 function FollowUser(db,FollowName,FollowingName){
     return new Promise(function (resolve, reject) {
-        db.run(("INSERT INTO Following (Follower, Followee) VALUES (?,?) "),FollowName,FollowingName, function (err) {
+        db.run("INSERT INTO Following (Follower, Followee) VALUES ('"+FollowName+"','"+FollowingName+"')", function (err) {
             if (err) {
                 console.log(err);
                 reject(err);
             }else {
-                console.log("Successfully Following ? Now", Following);
+                console.log("Successfully Following "+FollowName+"Now");
                 resolve();
             }
     });
     });
 }
+
+
