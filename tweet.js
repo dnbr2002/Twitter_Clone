@@ -7,6 +7,7 @@ var db = new sqlite3.Database('TwitterCloneDB.sqlite');
 var FollowName = 'Kim';
 var FollowingName = 'Rusty';
 
+
 FollowUser(db,FollowName,FollowingName);
 function FollowUser(db,FollowName,FollowingName){
     return new Promise(function (resolve, reject) {
@@ -15,11 +16,30 @@ function FollowUser(db,FollowName,FollowingName){
                 console.log(err);
                 reject(err);
             }else {
-                console.log("Successfully Following "+FollowName+"Now");
+                console.log("Successfully Following "+FollowName+" Now");
                 resolve();
             }
     });
     });
 }
+
+
+SelectUserProfile(db, 'Rusty');
+function SelectUserProfile(db,SelectedUser){
+    return new Promise(function (resolve,reject) {
+        db.each("SELECT name, profile, T.Text from User U join Tweet T where U.Name=T.Author and U.Name='"+SelectedUser+"'", function (err, row) {
+            if (err) {
+                console.log(err);
+                reject(err);
+                
+            }else {
+                console.log(row);
+                resolve();
+            }
+        });
+    });    
+}
+
+
 
 
