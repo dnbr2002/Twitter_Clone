@@ -43,3 +43,18 @@ function CreateTweetTable(db) {
     }
     }
 }
+
+
+function allFollowingTweets(Username){
+    return new Promise(function (resolve,reject) {
+        db.each("SELECT PK_User User where name="+Username+"", function (err, row) {
+            if (err) {
+                reject(err);
+                console.log(err);
+            }else {
+                return row;
+                resolve();
+            }
+        });
+    });
+}

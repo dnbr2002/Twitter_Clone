@@ -25,7 +25,7 @@ app.get('/userid/:username', function (req, res) {
 app.get('/userfeed/:userid', function(req, res) {
     var id = req.params.userid;
     db.allFollowingTweets(id).then(
-        function (tweets) {
+        function () {
             res.send(tweets);
         }
     ).catch(
