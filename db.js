@@ -39,4 +39,19 @@ function CreateTweetTable(db) {
         console.log(err);
     }
     }
+    function GetUserId(UserName){
+        return new Promise(function (resolve,reject) {
+            db.each("SELECT PK_User from User where name="+UserName+"", function (err, row) {
+                if (err) {
+                    reject(err);
+                    console.log(err);
+
+                }else {
+                    return row;
+                    resolve();
+                }
+            });
+        });
+    }
+
 }
