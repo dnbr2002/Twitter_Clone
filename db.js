@@ -1,9 +1,12 @@
 var express = require('express');
-var app = express();
+var app = express(); //may not need this here
 var sqlite3 = require('sqlite3').verbose();
 var db = new sqlite3.Database('TwitterDb.db');
 var TweetTable = 'Tweet'
 var UserTable = 'User'
+
+
+//This is not correct!!!
 
 CreateTweetTable(db);
 function CreateTweetTable(db) {
